@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.shibadog.azugon.game.pane.AzugonGame">
+   <bottom>
+      <BorderPane prefHeight="75.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <left>
+            <fx:include fx:id="operation" source="Opration.fxml" />
+         </left>
+      </BorderPane>
+   </bottom>
+   <center>
+      <fx:include fx:id="mainCanvas" source="MainCanvas.fxml" />
+   </center>
+</BorderPane>

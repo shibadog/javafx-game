@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="operation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.shibadog.azugon.game.pane.Operation">
+    <top>
+        <Button fx:id="up" mnemonicParsing="false" onAction="#clickUp" onKeyPressed="#keyPressed" text="↑" BorderPane.alignment="CENTER" />
+    </top>
+    <left>
+        <Button fx:id="left" mnemonicParsing="false" onAction="#clickLeft" onKeyPressed="#keyPressed" text="←" BorderPane.alignment="CENTER" />
+    </left>
+    <right>
+        <Button fx:id="right" mnemonicParsing="false" onAction="#clickRight" onKeyPressed="#keyPressed" text="→" BorderPane.alignment="CENTER" />
+    </right>
+    <bottom>
+        <Button fx:id="down" mnemonicParsing="false" onAction="#clickDown" onKeyPressed="#keyPressed" text="↓" BorderPane.alignment="CENTER" />
+    </bottom>
+</BorderPane>
