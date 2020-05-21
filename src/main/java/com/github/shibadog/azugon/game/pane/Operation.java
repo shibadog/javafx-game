@@ -1,7 +1,6 @@
 package com.github.shibadog.azugon.game.pane;
 
 import com.github.shibadog.azugon.game.model.CharactorState;
-import com.github.shibadog.azugon.game.model.CharactorState.Direction;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,26 +31,25 @@ public class Operation extends BorderPane {
     @FXML
     public void clickUp() {
         log.debug("up!");
-        state.setDirection(Direction.BACK);
-        state.getPosition().up();
+        state.up();
     }
+
     @FXML
     public void clickLeft() {
         log.debug("left!");
-        state.setDirection(Direction.LEFT);
-        state.getPosition().left();
+        state.left();
     }
+
     @FXML
     public void clickRight() {
         log.debug("right!");
-        state.setDirection(Direction.RIGHT);
-        state.getPosition().right();
+        state.right();
     }
+    
     @FXML
     public void clickDown() {
         log.debug("down!");
-        state.setDirection(Direction.FRONT);
-        state.getPosition().down();
+        state.down();
     }
 
     @FXML

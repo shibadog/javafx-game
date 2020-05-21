@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 import com.github.shibadog.azugon.game.model.CharactorState;
-import com.github.shibadog.azugon.game.model.MapModel.Position;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -53,8 +52,7 @@ public class MainCanvas extends Pane implements Initializable {
         GraphicsContext gc = mainCanvas.getGraphicsContext2D();
         gc.clearRect(0, 0, mainCanvas.getWidth(), mainCanvas.getHeight());
         charactors.forEach(state -> {
-            Position p = state.getPosition();
-            gc.drawImage(state.getImage(), state.getX(), state.getY(), state.getWidth(), state.getHeight(), p.getX(), p.getY(), state.getWidth(), state.getHeight());
+            gc.drawImage(state.getImage(), state.getX(), state.getY(), state.getWidth(), state.getHeight(), state.getPositionX(), state.getPositionY(), state.getWidth(), state.getHeight());
         });
     }
 

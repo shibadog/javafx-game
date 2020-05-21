@@ -5,27 +5,18 @@ import java.net.URL;
 import com.github.shibadog.azugon.game.model.MapModel.Position;
 
 import javafx.scene.image.Image;
+import lombok.Getter;
 
 public class CharactorState {
-    Image image;
-    public boolean isOneStep;
-    private int width;
-    private int height;
+    private boolean isOneStep;
     private Direction direction;
     private Position position;
-
-    public final Direction getDirection() {
-        return direction;
-    }
-    public final void setDirection(Direction direction) {
-        this.direction = direction;
-    }
-    public final Position getPosition() {
-        return position;
-    }
-    public final Image getImage() {
-        return image;
-    }
+    @Getter
+    Image image;
+    @Getter
+    private int width;
+    @Getter
+    private int height;
 
     public CharactorState(URL image, int width, int height, Position position) {
         this.width = width;
@@ -35,17 +26,33 @@ public class CharactorState {
         this.image = new Image(image.toString());
     }
 
-    public CharactorState nextStep() {
-        this.isOneStep = !isOneStep;
+    public CharactorState up() {
+        direction = Direction.BACK;
+        position.up();
         return this;
     }
 
-    public int getWidth() {
-        return width;
+    public CharactorState left() {
+        direction = Direction.LEFT;
+        position.left();
+        return this;
     }
 
-    public int getHeight() {
-        return height;
+    public CharactorState right() {
+        direction = Direction.RIGHT;
+        position.right();
+        return this;
+    }
+
+    public CharactorState down() {
+        direction = Direction.FRONT;
+        position.down();
+        return this;
+    }
+
+    public CharactorState nextStep() {
+        this.isOneStep = !isOneStep;
+        return this;
     }
 
     public int getX() {
@@ -65,6 +72,14 @@ public class CharactorState {
             default:
                 return 0;
         }
+    }
+
+    public int getPositionX() {
+        return position.getX();
+    }
+
+    public int getPositionY() {
+        return position.getY();
     }
 
     public enum Direction {
