@@ -49,10 +49,7 @@ public class MapModel {
     }
 
     public enum MapStatus {
-        NONE,
-        CHARACTOR,
-        DONT_MOVE,
-        ;
+        NONE, CHARACTOR, DONT_MOVE,;
     }
 
     public class Position {
@@ -63,6 +60,7 @@ public class MapModel {
         private int xx;
         private int yy;
         private int tile;
+
         public Position(int tile, int xx, int yy) {
             x = xx * tile;
             y = yy * tile;
@@ -77,39 +75,49 @@ public class MapModel {
         public Position(int tile) {
             this(tile, 0, 0);
         }
-    
+
         public Position up() {
-            if (y - tile < 0) return this;
-            if (cantMove(xx, yy - 1)) return this;
+            if (y - tile < 0)
+                return this;
+            if (cantMove(xx, yy - 1))
+                return this;
             y = y - tile;
             return move(xx, yy, xx, --yy);
         }
 
         public Position down() {
-            if (y + tile > MapModel.this.height) return this;
-            if (cantMove(xx, yy + 1)) return this;
+            if (y + tile > MapModel.this.height)
+                return this;
+            if (cantMove(xx, yy + 1))
+                return this;
             y = y + tile;
             return move(xx, yy, xx, ++yy);
         }
 
         public Position left() {
-            if (x - tile < 0) return this;
-            if (cantMove(xx - 1, yy)) return this;
+            if (x - tile < 0)
+                return this;
+            if (cantMove(xx - 1, yy))
+                return this;
             x = x - tile;
             return move(xx, yy, --xx, yy);
         }
 
         public Position right() {
-            if (x + tile > MapModel.this.width) return this;
-            if (cantMove(xx + 1, yy)) return this;
+            if (x + tile > MapModel.this.width)
+                return this;
+            if (cantMove(xx + 1, yy))
+                return this;
             x = x + tile;
             return move(xx, yy, ++xx, yy);
         }
 
         protected boolean cantMove(int nextXX, int nextYY) {
             try {
-                if (MapModel.this.mapStatus.length <= nextXX) return true;
-                if (MapModel.this.mapStatus[nextXX].length <= nextYY) return true;
+                if (MapModel.this.mapStatus.length <= nextXX)
+                    return true;
+                if (MapModel.this.mapStatus[nextXX].length <= nextYY)
+                    return true;
                 return MapModel.this.mapStatus[nextXX][nextYY] != MapStatus.NONE;
             } catch (RuntimeException e) {
                 log.info(e.getMessage());

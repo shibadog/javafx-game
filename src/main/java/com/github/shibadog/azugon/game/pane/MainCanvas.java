@@ -29,21 +29,12 @@ public class MainCanvas extends Pane implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Timeline reDrow = new Timeline(
-            new KeyFrame(
-                Duration.millis(300),
-                (event) -> draw()
-            )
-        );
+        Timeline reDrow = new Timeline(new KeyFrame(Duration.millis(300), (event) -> draw()));
         reDrow.setCycleCount(Timeline.INDEFINITE);
         reDrow.play();
 
         Timeline step = new Timeline(
-            new KeyFrame(
-                Duration.millis(1000),
-                (event) -> charactors.forEach(s -> s.nextStep())
-            )
-        );
+                new KeyFrame(Duration.millis(1000), (event) -> charactors.forEach(s -> s.nextStep())));
         step.setCycleCount(Timeline.INDEFINITE);
         step.play();
     }
@@ -52,7 +43,8 @@ public class MainCanvas extends Pane implements Initializable {
         GraphicsContext gc = mainCanvas.getGraphicsContext2D();
         gc.clearRect(0, 0, mainCanvas.getWidth(), mainCanvas.getHeight());
         charactors.forEach(state -> {
-            gc.drawImage(state.getImage(), state.getX(), state.getY(), state.getWidth(), state.getHeight(), state.getPositionX(), state.getPositionY(), state.getWidth(), state.getHeight());
+            gc.drawImage(state.getImage(), state.getX(), state.getY(), state.getWidth(), state.getHeight(),
+                    state.getPositionX(), state.getPositionY(), state.getWidth(), state.getHeight());
         });
     }
 

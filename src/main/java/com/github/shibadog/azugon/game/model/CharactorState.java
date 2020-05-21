@@ -12,7 +12,7 @@ public class CharactorState {
     private Direction direction;
     private Position position;
     @Getter
-    Image image;
+    private Image image;
     @Getter
     private int width;
     @Getter
@@ -21,7 +21,7 @@ public class CharactorState {
     public CharactorState(URL image, int width, int height, Position position) {
         this.width = width;
         this.height = height;
-        direction = Direction.FRONT;
+        this.direction = Direction.FRONT;
         this.position = position;
         this.image = new Image(image.toString());
     }

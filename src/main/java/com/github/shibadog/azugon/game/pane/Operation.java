@@ -11,10 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Operation extends BorderPane {
     private CharactorState state;
-    
+
     public void setState(CharactorState state) {
         this.state = state;
     }
+
     public CharactorState getState() {
         return state;
     }
@@ -45,7 +46,7 @@ public class Operation extends BorderPane {
         log.debug("right!");
         state.right();
     }
-    
+
     @FXML
     public void clickDown() {
         log.debug("down!");
@@ -54,7 +55,7 @@ public class Operation extends BorderPane {
 
     @FXML
     public void keyPressed(KeyEvent e) {
-        switch(e.getCode()) {
+        switch (e.getCode()) {
             case UP:
                 clickUp();
                 break;

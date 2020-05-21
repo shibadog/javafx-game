@@ -41,28 +41,23 @@ public class AzugonGame extends BorderPane implements Initializable {
         int whiteCatKey = map.createCharactor(2, 3);
         URL whiteCatPath = getClass().getResource("/whitecat.png");
         final CharactorState whiteCat = new CharactorState(whiteCatPath, 32, 32, map.getPosition(whiteCatKey));
-        Timeline whiteCatOperation = new Timeline(
-            new KeyFrame(
-                Duration.seconds(2),
-                (e) -> {
-                    switch(ThreadLocalRandom.current().nextInt(5)) {
-                        case 1:
-                            whiteCat.up();
-                            break;
-                        case 2:
-                            whiteCat.left();
-                            break;
-                        case 3:
-                            whiteCat.right();
-                            break;
-                        case 4:
-                            whiteCat.down();
-                            break;
-                        default:
-                    }
-                }
-            )
-        );
+        Timeline whiteCatOperation = new Timeline(new KeyFrame(Duration.seconds(2), (e) -> {
+            switch (ThreadLocalRandom.current().nextInt(5)) {
+                case 1:
+                    whiteCat.up();
+                    break;
+                case 2:
+                    whiteCat.left();
+                    break;
+                case 3:
+                    whiteCat.right();
+                    break;
+                case 4:
+                    whiteCat.down();
+                    break;
+                default:
+            }
+        }));
         whiteCatOperation.setCycleCount(Timeline.INDEFINITE);
         whiteCatOperation.play();
         mainCanvasController.addCharactor(whiteCat);
