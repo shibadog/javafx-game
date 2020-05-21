@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Operation extends BorderPane {
     private CharactorState state;
     
@@ -29,25 +31,25 @@ public class Operation extends BorderPane {
 
     @FXML
     public void clickUp() {
-        System.out.println("up!");
+        log.debug("up!");
         state.setDirection(Direction.BACK);
         state.getPosition().up();
     }
     @FXML
     public void clickLeft() {
-        System.out.println("left!");
+        log.debug("left!");
         state.setDirection(Direction.LEFT);
         state.getPosition().left();
     }
     @FXML
     public void clickRight() {
-        System.out.println("right!");
+        log.debug("right!");
         state.setDirection(Direction.RIGHT);
         state.getPosition().right();
     }
     @FXML
     public void clickDown() {
-        System.out.println("down!");
+        log.debug("down!");
         state.setDirection(Direction.FRONT);
         state.getPosition().down();
     }
