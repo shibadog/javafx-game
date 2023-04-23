@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import com.github.shibadog.azugon.game.model.CharactorState;
+import com.github.shibadog.azugon.game.model.CharacterState;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -18,9 +18,9 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class MainCanvas extends Pane implements Initializable {
-    private Set<CharactorState> charactors = Collections.synchronizedSet(new HashSet<CharactorState>());
+    private Set<CharacterState> charactors = Collections.synchronizedSet(new HashSet<CharacterState>());
 
-    public void addCharactor(CharactorState state) {
+    public void addCharactor(CharacterState state) {
         charactors.add(state);
     }
 

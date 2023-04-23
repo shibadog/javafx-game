@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 import com.github.shibadog.azugon.game.gamepad.ControllerInput;
 import com.github.shibadog.azugon.game.gamepad.KeyboardControllerInput;
 import com.github.shibadog.azugon.game.gamepad.StickControllerInput;
-import com.github.shibadog.azugon.game.model.CharactorState;
+import com.github.shibadog.azugon.game.model.CharacterState;
 import com.github.shibadog.azugon.game.model.MapModel;
 
 import javafx.animation.KeyFrame;
@@ -22,7 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class AzugonGame extends BorderPane implements Initializable {
-    public CharactorState blackCat;
+    public CharacterState blackCat;
     public MapModel map;
 
     @FXML
@@ -40,13 +40,13 @@ public class AzugonGame extends BorderPane implements Initializable {
         map = new MapModel(200, 200);
         int key = map.createCharactor();
         URL blackCatPath = getClass().getResource("/blackcat.png");
-        blackCat = new CharactorState(blackCatPath, 32, 32, map.getPosition(key));
+        blackCat = new CharacterState(blackCatPath, 32, 32, map.getPosition(key));
         operationController.setState(blackCat);
         mainCanvasController.addCharactor(blackCat);
 
         int whiteCatKey = map.createCharactor(2, 3);
         URL whiteCatPath = getClass().getResource("/whitecat.png");
-        final CharactorState whiteCat = new CharactorState(whiteCatPath, 32, 32, map.getPosition(whiteCatKey));
+        final CharacterState whiteCat = new CharacterState(whiteCatPath, 32, 32, map.getPosition(whiteCatKey));
         Timeline whiteCatOperation = new Timeline(new KeyFrame(Duration.seconds(2), (e) -> {
             switch (ThreadLocalRandom.current().nextInt(5)) {
                 case 1:

@@ -1,6 +1,6 @@
 package com.github.shibadog.azugon.game.pane;
 
-import com.github.shibadog.azugon.game.model.CharactorState;
+import com.github.shibadog.azugon.game.model.CharacterState;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,13 +10,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Operation extends BorderPane {
-    private CharactorState state;
+    private CharacterState state;
 
-    public void setState(CharactorState state) {
+    public void setState(CharacterState state) {
         this.state = state;
     }
 
-    public CharactorState getState() {
+    public CharacterState getState() {
         return state;
     }
 
