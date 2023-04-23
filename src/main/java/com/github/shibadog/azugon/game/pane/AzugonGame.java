@@ -72,7 +72,7 @@ public class AzugonGame extends BorderPane implements Initializable {
         ControllerInput keyboardInput = new KeyboardControllerInput();
 
         Consumer<ControllerInput.State> changeState = x -> {
-            switch(x.getX()) {
+            switch(x.x()) {
                 case 1:
                     blackCat.right();
                     break;
@@ -81,7 +81,7 @@ public class AzugonGame extends BorderPane implements Initializable {
                     break;
                 default:
             }
-            switch(x.getY()) {
+            switch(x.y()) {
                 case 1:
                     blackCat.down();
                     break;

@@ -2,8 +2,6 @@ package com.github.shibadog.azugon.game.gamepad;
 
 import java.util.Optional;
 import java.util.stream.Stream;
-
-import lombok.Value;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 
@@ -18,10 +16,9 @@ public interface ControllerInput {
             .orElse(NullController.INSTANCE);
     }
 
-    @Value
-    static class State {
-        private final int x;
-        private final int y;
-        private final boolean attackButtonPushed;
-    }
+    static record State(
+        int x,
+        int y,
+        boolean attackButtonPushed
+    ) {}
 }
