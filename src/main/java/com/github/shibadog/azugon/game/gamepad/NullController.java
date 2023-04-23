@@ -10,68 +10,57 @@ public class NullController implements Controller {
     public static final NullController INSTANCE = new NullController();
 
 	@Override
-	public Component getComponent(Identifier arg0) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getComponent'");
+	public Component getComponent(Identifier id) {
+		return null;
 	}
 
 	@Override
 	public Component[] getComponents() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getComponents'");
+		return new Component[0];
 	}
 
 	@Override
 	public Controller[] getControllers() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getControllers'");
+		return new Controller[0];
 	}
 
 	@Override
 	public EventQueue getEventQueue() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getEventQueue'");
+		return null;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getName'");
+		return "NullController";
 	}
 
 	@Override
 	public int getPortNumber() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getPortNumber'");
+		return -1;
 	}
 
 	@Override
 	public PortType getPortType() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getPortType'");
+		return Controller.PortType.UNKNOWN;
 	}
 
 	@Override
 	public Rumbler[] getRumblers() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getRumblers'");
+		return new Rumbler[0];
 	}
 
 	@Override
 	public Type getType() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getType'");
+		return Controller.Type.UNKNOWN;
 	}
 
 	@Override
 	public boolean poll() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'poll'");
+		return false;
 	}
 
 	@Override
-	public void setEventQueueSize(int arg0) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setEventQueueSize'");
+	public void setEventQueueSize(int size) {
+		// nothing
 	}
 }
