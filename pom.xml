@@ -39,6 +39,24 @@
       <version>1.2.3</version>
     </dependency>
     <dependency>
+      <groupId>net.java.jinput</groupId>
+      <artifactId>jinput</artifactId>
+      <version>2.0.9</version>
+    </dependency>
+    <dependency>
+      <groupId>net.java.jinput</groupId>
+      <artifactId>windows-plugin</artifactId>
+      <version>2.0.9</version>
+    </dependency>
+
+    <!-- <dependency>
+        <groupId>net.java.jinput</groupId>
+        <artifactId>jinput</artifactId>
+        <version>2.0.9</version>
+        <classifier>natives-all</classifier>
+    </dependency> -->
+    <!-- lombok -->
+    <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.12</version>
@@ -99,6 +117,21 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
 			</plugin>
+      <!-- JDK11未対応
+      <plugin>
+        <groupId>com.teamtter.mavennatives</groupId>
+        <artifactId>nativedependencies-maven-plugin</artifactId>
+        <version>1.0.6</version>
+        <executions>
+          <execution>
+            <id>unpacknatives</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin> -->
     </plugins>
   </build>
   </project>
