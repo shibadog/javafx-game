@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MapModel {
-    private static int TIP = 32;
+    private static final int TIP = 32;
     private int width;
     private int height;
     private Map<Integer, Position> characters = Collections.synchronizedMap(new HashMap<Integer, Position>());
