@@ -26,16 +26,18 @@ public class KeyboardControllerInput implements ControllerInput {
     @Override
     public Optional<ControllerInput.State> getState() {
         if (controller.poll()) {
-            int x = controller.getComponent(Identifier.Key.LEFT).getPollData() > 0.0f
-                ? -1
-                : controller.getComponent(Identifier.Key.RIGHT).getPollData() > 0.0f
-                    ? 1
-                    : 0;
-            int y = controller.getComponent(Identifier.Key.UP).getPollData() > 0.0f
-                ? -1
-                : controller.getComponent(Identifier.Key.DOWN).getPollData() > 0.0f
-                    ? 1
-                    : 0;
+            int x = 0;
+            if (controller.getComponent(Identifier.Key.LEFT).getPollData() > 0.0f) {
+                x = -1;
+            } else if(controller.getComponent(Identifier.Key.RIGHT).getPollData() > 0.0f) {
+                x = 1;
+            }
+            int y = 0;
+            if (controller.getComponent(Identifier.Key.UP).getPollData() > 0.0f) {
+                y = -1;
+            } else if(controller.getComponent(Identifier.Key.DOWN).getPollData() > 0.0f) {
+                y = 1;
+            }
             // Spaceキー
             boolean spaceKeyPushed = controller.getComponent(Identifier.Key.SPACE).getPollData() > 0.0f;
             boolean attackButtonPushed = spaceKeyReleased && spaceKeyPushed;

@@ -28,18 +28,18 @@ public class GamepadControllerInput implements ControllerInput {
         if (controller.poll()) {
             float x0 = controller.getComponent(Identifier.Axis.X).getPollData();
             float y0 = controller.getComponent(Identifier.Axis.Y).getPollData();
-            int x = x0 > 0.0f
-                ? 1
-                : x0 < -0.1f
-                    ? -1
-                    : 0;
-            int y = y0 > 0.0f
-                ? 1
-                : y0 < -0.1f
-                    ? -1
-                    : 0;
-            float b3 = controller.getComponent(Identifier.Button._2).getPollData();
-            System.out.println("b3=" + b3);
+            int x = 0;
+            if (x0 > 0.0f) {
+                x = 1;
+            } else if(x0 < -0.1f) {
+                x = -1;
+            }
+            int y = 0;
+            if (y0 > 0.0f) {
+                y = 1;
+            } else if (y0 < -0.1f) {
+                y = -1;
+            }
             // Button._2はボタン３（0オリジン）
             boolean button3Pushed = controller.getComponent(Identifier.Button._2).getPollData() > 0.0f;
             boolean attackButtonPushed = button3Released && button3Pushed;

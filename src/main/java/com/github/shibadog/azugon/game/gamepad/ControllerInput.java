@@ -12,7 +12,6 @@ public interface ControllerInput {
     boolean available();
     static Controller detectController(Controller.Type type) {
         Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
-        System.out.println(controllers);
         return Stream.of(controllers)
             .filter(cnt -> cnt != null && cnt.getType() == type)
             .findAny()
