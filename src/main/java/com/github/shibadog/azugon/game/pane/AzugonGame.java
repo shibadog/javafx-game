@@ -22,9 +22,6 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class AzugonGame extends BorderPane implements Initializable {
-    public CharacterState blackCat;
-    public MapModel map;
-
     @FXML
     private Pane mainCanvas;
     @FXML
@@ -37,17 +34,17 @@ public class AzugonGame extends BorderPane implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        map = new MapModel(200, 200);
-        int key = map.createCharactor();
+        MapModel map = new MapModel(200, 200);
+        int key = map.createCharacter();
         URL blackCatPath = getClass().getResource("/blackcat.png");
-        blackCat = new CharacterState(blackCatPath, 32, 32, map.getPosition(key));
+        final CharacterState blackCat = new CharacterState(blackCatPath, 32, 32, map.getPosition(key));
         operationController.setState(blackCat);
-        mainCanvasController.addCharactor(blackCat);
+        mainCanvasController.addCharacter(blackCat);
 
-        int whiteCatKey = map.createCharactor(2, 3);
+        int whiteCatKey = map.createCharacter(2, 3);
         URL whiteCatPath = getClass().getResource("/whitecat.png");
         final CharacterState whiteCat = new CharacterState(whiteCatPath, 32, 32, map.getPosition(whiteCatKey));
-        Timeline whiteCatOperation = new Timeline(new KeyFrame(Duration.seconds(2), (e) -> {
+        Timeline whiteCatOperation = new Timeline(new KeyFrame(Duration.seconds(2), e -> {
             switch (ThreadLocalRandom.current().nextInt(5)) {
                 case 1:
                     whiteCat.up();
@@ -66,7 +63,7 @@ public class AzugonGame extends BorderPane implements Initializable {
         }));
         whiteCatOperation.setCycleCount(Timeline.INDEFINITE);
         whiteCatOperation.play();
-        mainCanvasController.addCharactor(whiteCat);
+        mainCanvasController.addCharacter(whiteCat);
 
         ControllerInput stickInput = new StickControllerInput();
         ControllerInput keyboardInput = new KeyboardControllerInput();

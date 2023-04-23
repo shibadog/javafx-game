@@ -13,7 +13,7 @@ public class MapModel {
     private static int TIP = 32;
     private int width;
     private int height;
-    private Map<Integer, Position> charactors = Collections.synchronizedMap(new HashMap<Integer, Position>());
+    private Map<Integer, Position> characters = Collections.synchronizedMap(new HashMap<Integer, Position>());
     private MapStatus[][] mapStatus;
     private int maxX;
     private int maxY;
@@ -31,25 +31,25 @@ public class MapModel {
         }
     }
 
-    public int createCharactor(int xx, int yy) {
-        int count = charactors.entrySet().size();
+    public int createCharacter(int xx, int yy) {
+        int count = characters.entrySet().size();
         Integer key = count + 1;
-        charactors.put(key, new Position(32, xx, yy));
+        characters.put(key, new Position(32, xx, yy));
         return key;
     }
 
-    public int createCharactor() {
-        return createCharactor(0, 0);
+    public int createCharacter() {
+        return createCharacter(0, 0);
     }
 
     public Position getPosition(int key) {
-        if (!charactors.containsKey(key))
-            throw new IllegalArgumentException("not exists charactor");
-        return charactors.get(key);
+        if (!characters.containsKey(key))
+            throw new IllegalArgumentException("not exists character");
+        return characters.get(key);
     }
 
     public enum MapStatus {
-        NONE, CHARACTOR, DONT_MOVE,;
+        NONE, CHARACTER, DONT_MOVE,;
     }
 
     public class Position {
@@ -69,7 +69,7 @@ public class MapModel {
             this.tile = tile;
             if (MapModel.this.mapStatus[xx][yy] != MapStatus.NONE)
                 throw new IllegalArgumentException();
-            MapModel.this.mapStatus[xx][yy] = MapStatus.CHARACTOR;
+            MapModel.this.mapStatus[xx][yy] = MapStatus.CHARACTER;
         }
 
         public Position(int tile) {
@@ -127,7 +127,7 @@ public class MapModel {
 
         protected synchronized Position move(int xx, int yy, int nextXX, int nextYY) {
             MapModel.this.mapStatus[xx][yy] = MapStatus.NONE;
-            MapModel.this.mapStatus[nextXX][nextYY] = MapStatus.CHARACTOR;
+            MapModel.this.mapStatus[nextXX][nextYY] = MapStatus.CHARACTER;
             return this;
         }
     }

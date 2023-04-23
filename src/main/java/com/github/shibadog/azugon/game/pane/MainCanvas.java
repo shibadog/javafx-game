@@ -18,10 +18,10 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class MainCanvas extends Pane implements Initializable {
-    private Set<CharacterState> charactors = Collections.synchronizedSet(new HashSet<CharacterState>());
+    private Set<CharacterState> characters = Collections.synchronizedSet(new HashSet<CharacterState>());
 
-    public void addCharactor(CharacterState state) {
-        charactors.add(state);
+    public void addCharacter(CharacterState state) {
+        characters.add(state);
     }
 
     @FXML
@@ -29,12 +29,12 @@ public class MainCanvas extends Pane implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Timeline reDrow = new Timeline(new KeyFrame(Duration.millis(300), (event) -> draw()));
-        reDrow.setCycleCount(Timeline.INDEFINITE);
-        reDrow.play();
+        Timeline reDraw = new Timeline(new KeyFrame(Duration.millis(300), event -> draw()));
+        reDraw.setCycleCount(Timeline.INDEFINITE);
+        reDraw.play();
 
         Timeline step = new Timeline(
-                new KeyFrame(Duration.millis(1000), (event) -> charactors.forEach(s -> s.nextStep())));
+                new KeyFrame(Duration.millis(1000), event -> characters.forEach(s -> s.nextStep())));
         step.setCycleCount(Timeline.INDEFINITE);
         step.play();
     }
@@ -42,10 +42,10 @@ public class MainCanvas extends Pane implements Initializable {
     protected void draw() {
         GraphicsContext gc = mainCanvas.getGraphicsContext2D();
         gc.clearRect(0, 0, mainCanvas.getWidth(), mainCanvas.getHeight());
-        charactors.forEach(state -> {
-            gc.drawImage(state.getImage(), state.getX(), state.getY(), state.getWidth(), state.getHeight(),
-                    state.getPositionX(), state.getPositionY(), state.getWidth(), state.getHeight());
-        });
+        characters.forEach(state -> gc
+                .drawImage(state.getImage(), state.getX(), state.getY(), state.getWidth(), state.getHeight(),
+                    state.getPositionX(), state.getPositionY(), state.getWidth(), state.getHeight())
+        );
     }
 
 }
