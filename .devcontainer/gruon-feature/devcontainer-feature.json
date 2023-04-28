@@ -1,0 +1,23 @@
+{
+    "id": "gruon-javafx",
+    "version": "17.0.7",
+    "name": "gruon-javafx",
+    "documentationURL": "https://gluonhq.com/products/javafx/",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "latest"
+            ],
+            "default": "latest",
+            "description": "Select or enter an anaconda version."
+        }
+    },
+    "containerEnv": {
+        "OPNEJFX_LIB": "/usr/local/javafx-sdk/lib",
+        "PATH": "/usr/local/javafx-sdk/:${PATH}"
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}

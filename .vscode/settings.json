@@ -8,5 +8,7 @@
         "Initializable",
         "shibadog",
         "whitecat"
-    ]
+    ],
+    "java.project.explorer.showNonJavaResources": false,
+    "java.dependency.packagePresentation": "hierarchical"
 }
