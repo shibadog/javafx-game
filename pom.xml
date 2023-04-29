@@ -3,69 +3,72 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
     http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.0.6</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
   <groupId>com.github.shibadog.azgon</groupId>
   <artifactId>game</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
   <properties>
+    <spring-boot.run.jvmArguments>
+      --module-path ${env.PATH_TO_FX}
+      --add-modules javafx.controls,javafx.fxml
+      -Djava.library.path=${env.PATH_TO_FX}
+      -Dnet.java.games.input.librarypath=${project.basedir}/target/natives
+    </spring-boot.run.jvmArguments>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>17</java.version>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-    <junit.jupiter.version>5.6.2</junit.jupiter.version>
+
+    <javafx.version>17.0.7</javafx.version>
+    <jinput.version>2.0.9</jinput.version>
+
+    <nativedependencies-maven-plugin.version>1.0.6</nativedependencies-maven-plugin.version>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
     <!-- openjfx -->
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
-      <version>11.0.2</version>
+      <version>${javafx.version}</version>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
-      <version>11.0.2</version>
+      <version>${javafx.version}</version>
     </dependency>
-    <!-- logger -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.7.30</version>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.2.3</version>
-    </dependency>
+
     <dependency>
       <groupId>net.java.jinput</groupId>
       <artifactId>jinput</artifactId>
-      <version>2.0.9</version>
-    </dependency>
-    <dependency>
-      <groupId>net.java.jinput</groupId>
-      <artifactId>windows-plugin</artifactId>
-      <version>2.0.9</version>
+      <version>${jinput.version}</version>
     </dependency>
     <dependency>
         <groupId>net.java.jinput</groupId>
         <artifactId>jinput</artifactId>
-        <version>2.0.9</version>
+        <version>${jinput.version}</version>
         <classifier>natives-all</classifier>
     </dependency>
     <!-- lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.26</version>
       <scope>provided</scope>
     </dependency>
     <!-- test -->
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>${junit.jupiter.version}</version>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -73,54 +76,21 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-maven-plugin</artifactId>
-        <version>0.0.1</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <mainClass>com.github.shibadog.azugon.game.App</mainClass>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
-          <archive>
-            <manifest>
-              <mainClass>com.github.shibadog.azugon.game.App</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.6.1</version>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
-      </plugin>
-      <!-- JDK11未対応? -->
       <plugin>
         <groupId>com.teamtter.mavennatives</groupId>
         <artifactId>nativedependencies-maven-plugin</artifactId>
-        <version>1.0.6</version>
+        <version>${nativedependencies-maven-plugin.version}</version>
         <executions>
           <execution>
             <id>unpacknatives</id>

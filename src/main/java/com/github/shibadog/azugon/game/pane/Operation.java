@@ -1,5 +1,7 @@
 package com.github.shibadog.azugon.game.pane;
 
+import org.springframework.stereotype.Component;
+
 import com.github.shibadog.azugon.game.model.CharacterState;
 
 import javafx.fxml.FXML;
@@ -8,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import lombok.extern.slf4j.Slf4j;
 
+@Component
 @Slf4j
 public class Operation extends BorderPane {
     private CharacterState state;
