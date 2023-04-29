@@ -1,11 +1,10 @@
 package com.github.shibadog.azugon.game.pane;
 
 import java.net.URL;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.shibadog.azugon.game.model.CharacterState;
@@ -21,11 +20,8 @@ import javafx.util.Duration;
 
 @Component
 public class MainCanvas extends Pane implements Initializable {
-    private Set<CharacterState> characters = Collections.synchronizedSet(new HashSet<CharacterState>());
-
-    public void addCharacter(CharacterState state) {
-        characters.add(state);
-    }
+    @Autowired
+    private Set<CharacterState> characters;
 
     @FXML
     private Canvas mainCanvas;
