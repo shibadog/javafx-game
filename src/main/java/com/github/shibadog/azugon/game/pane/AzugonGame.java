@@ -2,18 +2,13 @@ package com.github.shibadog.azugon.game.pane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.github.shibadog.azugon.game.gamepad.ControllerInput;
-import com.github.shibadog.azugon.game.gamepad.KeyboardControllerInput;
-import com.github.shibadog.azugon.game.gamepad.StickControllerInput;
 import com.github.shibadog.azugon.game.model.CharacterState;
 import com.github.shibadog.azugon.game.model.MapModel;
 
@@ -70,48 +65,6 @@ public class AzugonGame extends BorderPane implements Initializable {
         }));
         whiteCatOperation.setCycleCount(Timeline.INDEFINITE);
         whiteCatOperation.play();
-
-        ControllerInput stickInput = new StickControllerInput();
-        ControllerInput keyboardInput = new KeyboardControllerInput();
-
-        Consumer<ControllerInput.State> changeState = x -> {
-            switch(x.x()) {
-                case 1:
-                    blackCat.right();
-                    break;
-                case -1:
-                    blackCat.left();
-                    break;
-                default:
-            }
-            switch(x.y()) {
-                case 1:
-                    blackCat.down();
-                    break;
-                case -1:
-                    blackCat.up();
-                    break;
-                default:
-            }
-        };
-        // ゲームパッド入力
-        if (stickInput.available()) {
-            ForkJoinPool.commonPool().execute(() -> {
-                while (true) {
-                    stickInput.getState().ifPresent(changeState);
-                    sleep(500L);
-                }
-            });
-        }
-        // キーボード入力
-        if (keyboardInput.available()) {
-            ForkJoinPool.commonPool().execute(() -> {
-                while (true) {
-                    keyboardInput.getState().ifPresent(changeState);
-                    sleep(500L);
-                }
-            });
-        }
     }
 
     void sleep(long millis) {
