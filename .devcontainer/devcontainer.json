@@ -30,7 +30,8 @@
 				"vmware.vscode-boot-dev-pack",
 				"mhutchie.git-graph",
 				"foxundermoon.shell-format",
-				"humao.rest-client"
+				"humao.rest-client",
+				// "bilalekrem.scenebuilderextension"
 			]
 		}
 	},

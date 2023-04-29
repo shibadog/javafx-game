@@ -14,8 +14,7 @@
         }
     },
     "containerEnv": {
-        "OPNEJFX_LIB": "/usr/local/javafx-sdk/lib",
-        "PATH": "/usr/local/javafx-sdk/:${PATH}"
+        "PATH_TO_FX": "/usr/local/javafx-sdk/lib"
     },
     "installsAfter": [
         "ghcr.io/devcontainers/features/common-utils"

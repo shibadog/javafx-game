@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
+
 import com.github.shibadog.azugon.game.model.CharacterState;
 
 import javafx.animation.KeyFrame;
@@ -17,6 +19,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
+@Component
 public class MainCanvas extends Pane implements Initializable {
     private Set<CharacterState> characters = Collections.synchronizedSet(new HashSet<CharacterState>());
 

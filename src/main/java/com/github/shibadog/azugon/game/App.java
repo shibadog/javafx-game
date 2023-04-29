@@ -1,36 +1,52 @@
 package com.github.shibadog.azugon.game;
 
-import java.net.URL;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.application.HostServices;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class App extends Application {
+    private ConfigurableApplicationContext context;
+
+    @Override
+    public void init() throws Exception {
+        ApplicationContextInitializer<GenericApplicationContext> initializer = 
+            ac -> {
+                ac.registerBean(Application.class, () -> App.this);
+                ac.registerBean(Parameters.class, this::getParameters);
+                ac.registerBean(HostServices.class, this::getHostServices);
+            };
+
+        this.context = new SpringApplicationBuilder()
+            .sources(BootifulApp.class)
+            .initializers(initializer)
+            .run(getParameters().getRaw().toArray(new String[0]));
+    }
 
     @Override
     public void start(final Stage stage) {
-        try {
-            // FXMLのレイアウトをロード
-            URL fxml = getClass().getResource("/AzugonGame.fxml");
-            final Parent root = FXMLLoader.load(fxml);
-
-            // タイトルセット
-            stage.setTitle("あずごんげーむ");
-
-            // シーン生成
-            final Scene scene = new Scene(root);
-
-            stage.setScene(scene);
-            stage.show();
-        } catch (final Exception e) {
-            e.printStackTrace();
-        }
+        this.context.publishEvent(new StageReadyEvent(stage));
     }
 
-    public static void main(final String... args) {
-        Application.launch(args);
+    @Override
+    public void stop() throws Exception {
+        this.context.close();
+        Platform.exit();
+    }
+
+    public static class StageReadyEvent extends ApplicationEvent {
+        public Stage getStage() {
+            return Stage.class.cast(getSource());
+        }
+    
+        public StageReadyEvent(Stage source) {
+            super(source);
+        }
     }
 }
