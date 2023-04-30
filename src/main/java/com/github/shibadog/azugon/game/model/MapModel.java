@@ -3,6 +3,9 @@ package com.github.shibadog.azugon.game.model;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -51,6 +54,22 @@ public class MapModel {
     public enum MapStatus {
         NONE, CHARACTER, DONT_MOVE,;
     }
+
+    public Set<Rect> getMapChipRect() {
+        var set = IntStream.range(0, maxX)
+                .mapToObj(x -> IntStream.range(0, maxY)
+                        .mapToObj(y -> new Rect(x * TIP, y * TIP, TIP, TIP)))
+                .flatMap(s -> s)
+                .collect(Collectors.toSet());
+        return set;
+    }
+
+    public record Rect(
+        int startX,
+        int startY,
+        int width,
+        int height
+    ) {}
 
     public class Position {
         @Getter(value = AccessLevel.PACKAGE)
