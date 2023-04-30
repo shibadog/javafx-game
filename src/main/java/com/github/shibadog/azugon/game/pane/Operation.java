@@ -7,7 +7,6 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -24,11 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class Operation extends BorderPane implements Initializable {
-    @Autowired
-    @Qualifier("blackCat")
     private CharacterState mainChara;
-
-    @Autowired
     private List<ControllerInput> inputs;
 
     @FXML
@@ -39,6 +34,12 @@ public class Operation extends BorderPane implements Initializable {
     private Button right;
     @FXML
     private Button down;
+
+    public Operation(List<ControllerInput> inputs,
+            @Qualifier("blackCat") CharacterState mainChara) {
+        this.inputs = inputs;
+        this.mainChara = mainChara;
+    }
 
     @FXML
     public void clickUp() {

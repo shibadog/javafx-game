@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.shibadog.azugon.game.model.CharacterState;
@@ -20,11 +19,14 @@ import javafx.util.Duration;
 
 @Component
 public class MainCanvas extends Pane implements Initializable {
-    @Autowired
-    private Set<CharacterState> characters;
+    private final Set<CharacterState> characters;
 
     @FXML
     private Canvas mainCanvas;
+
+    public MainCanvas(Set<CharacterState> characters) {
+        this.characters = characters;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

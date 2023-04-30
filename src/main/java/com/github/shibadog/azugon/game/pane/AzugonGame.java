@@ -5,12 +5,10 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.github.shibadog.azugon.game.model.CharacterState;
-import com.github.shibadog.azugon.game.model.MapModel;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -32,17 +30,11 @@ public class AzugonGame extends BorderPane implements Initializable {
     @FXML
     private Operation operationController;
 
-    @Autowired
-    @Qualifier("mainMap")
-    private MapModel map;
+    private final CharacterState whiteCat;
 
-    @Autowired
-    @Qualifier("blackCat")
-    private CharacterState blackCat;
-
-    @Autowired
-    @Qualifier("whiteCat")
-    private CharacterState whiteCat;
+    public AzugonGame(@Qualifier("whiteCat") CharacterState whiteCat) {
+        this.whiteCat = whiteCat;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
