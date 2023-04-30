@@ -5,3 +5,7 @@ spring:
   application:
     ui:
       title: あずごんげーむす
+
+logging:
+  level:
+    '[com.github.shibadog.azugon.game]': DEBUG
